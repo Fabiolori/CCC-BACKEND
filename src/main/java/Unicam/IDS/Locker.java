@@ -1,11 +1,16 @@
 package Unicam.IDS;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Locker{
-	
+	//TODO 		@Column(name = "") per ogni parametro
 	//IL CODICE UNIVOCO GENERATO DAI DATI DEL PUNTO DI RITIRO PER IDENTIFICARLO
+	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int ID;
 	
 	//IL NUMERO DI TELEFONO DEL PUNTO DI RITIRO

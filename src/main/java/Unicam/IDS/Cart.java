@@ -1,15 +1,18 @@
 package Unicam.IDS;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.List;
 @Entity
 public class Cart {
-
+//TODO 		@Column(name = "") per ogni parametro
 		//IL CODICE UNIVOCO GENERATO DAI DATI PER IDENTIFICARLO
+		@Id
+		@GeneratedValue(strategy= GenerationType.AUTO)
 		private int ID;
 		
 		//IL O I PRODOTTI CHE VENGONO AGGIUNTI NEL CARRELLO DAL CLIENTE, SE SI VUOLE METTERE PIU VOLTE LO STESSO PRODOTTO BISOGNA AGGIUNGERLO DI NUOVO NEL CARRELLO,
 		//LA QUANTITà NON VIENE PRESA IN CONSIDERAZIONE NEL CARRELLO
+		@ElementCollection(targetClass=Product.class)
 		private List<Product>  products;
 			
 		//L'IMPORTO CHE IL CLIENTE HA PAGHERà, VIENE CREATO DALLA SOMMA DEI PREZZI DEI PRODOTTI NEL CARRELLO
@@ -67,7 +70,7 @@ public class Cart {
 		}
 
 		/**
-		 * @param price the price to set
+		 *@set the price
 		 */
 		
 		public void setPrice() {
@@ -81,7 +84,7 @@ public class Cart {
 		}
 		
 		/**
-		 * @param products the products to set
+		 * @param product the product to add
 		 */
 		public void addProduct(Product product) {
 			if (product == null) throw new NullPointerException("Something went wrong: invalid add paramater");
@@ -90,7 +93,7 @@ public class Cart {
 		}
 
 		/**
-		 * @param products the products to set
+		 * @param product the product to remove
 		 */
 		public void removeProduct(Product product) {
 			if (product == null) throw new NullPointerException("Something went wrong: invalid remove paramater");

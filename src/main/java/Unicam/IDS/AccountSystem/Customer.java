@@ -2,22 +2,27 @@ package Unicam.IDS.AccountSystem;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 /**
  * @author Fabio Lori 2
  *
  */
 @Entity
+@Table(name = "Customers")
+
 public class Customer extends Account{
 
 		//IL CODICE UNIVOCO GENERATO DAI DATI DEL CLIENTE PER IDENTIFICARLO
-		private int ID;
+		@Id
+		@GeneratedValue(strategy=GenerationType.AUTO)
+		long ID;
 		
 		// L'INDIRIZZO DEL CLIENTE
+		@Column(name = "address")
 		private String address;
 
-	@JsonCreator
+	//@JsonCreator
 		public Customer(int cellNumber,String email, String password,String name, String surname, String address)
 		{	super(cellNumber, email, password,name,surname);
 
@@ -29,16 +34,10 @@ public class Customer extends Account{
 		/**
 		 * @return the iD
 		 */
-		public int getID() {
+		public long getID() {
 			return ID;
 		}
 
-		/**
-		 * @param iD the iD to set
-		 */
-		public void setID(String name, String surname) {
-			
-		}
 
 		/**
 		 * @return the Address

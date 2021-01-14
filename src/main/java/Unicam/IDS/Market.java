@@ -1,6 +1,6 @@
 package Unicam.IDS;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 /*Il caso d&#39;uso viene attivato dal commerciante nel momento in cui decide di inserire il suo negozio
 nella piattaforma. Il sistema chiede al commerciante informazioni sul negozio (Nome, Indirizzo, Tipo
@@ -12,38 +12,47 @@ modificare le informazioni.*/
 @Entity
 public class Market {
 	//IL CODICE UNIVOCO GENERATO DAI DATI DEL NEGOZIO PER IDENTIFICARLO
+	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int ID;
 	
 	//IL NOME DEL NEGOZIO
+	@Column(name = "name")
 	private String name;
 	
 	//L'INDIRIZZO DEL NEGOZIO
+	@Column(name = "address")
 	private String address;
 	
 	//IL TIPO DI NEGOZIO
+	@Column(name = "type")
 	private String type;
 	
 	//ORARIO DI APERTURA DEL NEGOZIO
+	@Column(name = "openingTime")
 	private int openingTime;
 	
 	//ORARIO DI CHIUSURA DEL NEGOZIO
+	@Column(name = "closingTime")
 	private int closingTime;
-	
+	//TODO
 	//I PARCHEGGI CONVENZIONATI
-	private Parking parking;
+	//@Embedded
+	//@Column(name = "")
+	//private Parking parking;
 	
 //	//I PRODOTTI DEL NEGOZIO
 //	private List<Product> products;
 
 	public Market(String name, String address, String type,int openingtime,int closingTime,Parking parking)
 	{
-		this.setID(name,address,type);
+
 		this.setName(name);
 		this.setAddress(address);
 		this.setType(type);
 		this.setOpeningTime(openingtime);
 		this.setClosingTime(closingTime);
-		this.setParking(parking);
+		//this.setParking(parking);
 	
 	}
 
@@ -54,12 +63,6 @@ public class Market {
 		return ID;
 	}
 
-	/**
-	 * @param iD the iD to set
-	 */
-	public void setID(String name, String address, String type) {
-		
-	}
 
 	/**
 	 * @return the Name
@@ -69,7 +72,7 @@ public class Market {
 	}
 
 	/**
-	 * @param Name the Name to set
+	 * @param name the Name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -137,17 +140,17 @@ public class Market {
 	/**
 	 * @return the list of the parking
 	 */
-	public Parking getParking() {
-		return parking;
-	}
+	//public Parking getParking() {
+//		return parking;
+//	}
 
 	/**
 	 * @param parking the lista dei parcheggi to set
 	 */
-	
-	public void setParking(Parking parking) {
-		this.parking = parking;
-	}
+
+	//public void setParking(Parking parking) {
+	//	this.parking = parking;
+//	}
 
 //	/**
 //	 * @return the Products

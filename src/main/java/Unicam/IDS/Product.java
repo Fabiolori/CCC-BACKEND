@@ -2,12 +2,17 @@ package Unicam.IDS;
 
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 //quando un prodotto viene venduto decremento quantity, se quantiti +è 0 deve essere segnalato, caso d uso? refill prodotto?
 @Entity
 public class Product {
-	
+	//TODO 		@Column(name = "") per ogni parametro
     //IL CODICE UNIVOCO GENERATO DAI DATI DEL PRODOTTO PER IDENTIFICARLO
+	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int ID;
 	
 	//IL NOME DEL Prodotto
@@ -31,8 +36,6 @@ public class Product {
 
 	
 	public Product(String name, int price, String brand, String description, String tags, int quantity){
-		
-			this.setID(name,brand);
 			this.setName(name);
 			this.setPrice(price);
 			this.setBrand(brand);
@@ -50,16 +53,6 @@ public class Product {
 	public int getID() {
 		return ID;
 	}
-
-
-
-	/**
-	 * @param iD the iD to set
-	 */
-	public void setID(String name, String brand) {
-		
-	}
-
 
 
 	/**

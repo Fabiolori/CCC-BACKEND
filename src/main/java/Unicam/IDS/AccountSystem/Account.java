@@ -1,18 +1,24 @@
 package Unicam.IDS.AccountSystem;
 
+import javax.persistence.Column;
 import java.util.Base64;
 
 public abstract class Account {
 	// IL NUMERO DI TELEFONO
+	@Column(name = "cellNumber")
 	private int cellNumber;
 	// L'EMAIL
+	@Column(name = "email")
 	private String email;
 	// LA PASSWORD PER FARE L'ACCESSO
+	@Column(name = "password")
 	private String password;
 	//IL NOME DELL'ACCOUNT
+	@Column(name = "name")
 	private String name;
 	
 	//IL COGNOME DELL ACCOUNT
+	@Column(name = "surname")
 	private String surname;
 
 

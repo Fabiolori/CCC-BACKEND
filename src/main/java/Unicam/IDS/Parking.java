@@ -1,10 +1,16 @@
 package Unicam.IDS;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
+
 public class Parking {
-	
+	//TODO 		@Column(name = "") per ogni parametro
+	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int ID;
 	//IL NOME DEL PARCHEGGIO
 	private String name;
@@ -21,7 +27,6 @@ public class Parking {
 	public Parking(String name, String address, int openingTime, int closingTime) {
 		if (name==null && address == null) 	throw new NullPointerException ("");
 		else {
-			this.setID(name,address);
 			this.setName(name);
 			this.setAddress(address);
 			this.setOpeningTime (openingTime);
@@ -37,15 +42,6 @@ public class Parking {
 		return ID;
 	}
 
-
-	/**
-	 * @param address 
-	 * @param name 
-	 * @param cellNumber 
-	 */
-	private void setID(String name, String address) {
-		return;
-	}
 
 
 	/**
@@ -103,7 +99,7 @@ public class Parking {
 	}
 
 	/**
-	 * @param openingTime the openingTime to set
+	 * @param closingTime the openingTime to set
 	 */
 	public void setClosingTime(int closingTime) {
 		this.closingTime = closingTime;

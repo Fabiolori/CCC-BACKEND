@@ -2,13 +2,13 @@ package Unicam.IDS;
 import Unicam.IDS.DB.DBManagerEdit;
 import Unicam.IDS.DB.DBManagerRead;
 
-import javax.persistence.Entity;
 import java.util.List;
 
-@Entity
+
 public class Catalogo {
-	
-	
+
+
+	private int ID;
 	//I PRODOTTI PRESENTI NEL CATALOGO
 	private List<Product>  products;
 	

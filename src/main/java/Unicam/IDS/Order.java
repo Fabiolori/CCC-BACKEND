@@ -3,22 +3,27 @@ package Unicam.IDS;
 import Unicam.IDS.AccountSystem.Customer;
 import Unicam.IDS.AccountSystem.Deliver;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.List;
 @Entity
 public class Order {
-
+	//TODO 		@Column(name = "") per ogni parametro
 	//IL CODICE UNIVOCO GENERATO DAI DATI PER IDENTIFICARLO
+	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO)
 	private int ID;
 	
 	//IL O I PRODOTTI CHE VENGONO ACQUISTATI DAL CLIENTE, SE SI VUOLE METTERE PIU VOLTE LO STESSO PRODOTTO BISOGNA AGGIUNGERLO DI NUOVO NELL?ORDINE,
 	//LA QUANTITà NON VIENE PRESA IN CONSIDERAZIONE NELL'ORDER
+	@ElementCollection(targetClass=Product.class)
 	private List<Product>  products;
-	
+
 	//IL CLIENTE CHE ACQUISTA
+	@ManyToOne
 	private Customer customer;
 	
 	//IL CORRIERE CHE SI OCCUPA DELLA CONSEGNA
+	@ManyToOne
 	private Deliver deliver;
 	
 	//L'IMPORTO CHE IL CLIENTE HA PAGATO, VIENE CREATO DALLA SOMMA DEI PREZZI DEI PRODOTTI NELL'ORDINE
@@ -49,7 +54,6 @@ public class Order {
 	public Order (List<Product>  products, Customer customer, Deliver deliver, OrderStatus status) {
 		if (products==null || customer == null) throw new NullPointerException ("");
 		else {
-			this.setID(products,customer,deliver);
 			this.setProducts(products);
 			this.setCustomer(customer);
 			this.setDeliver(deliver);
@@ -58,10 +62,7 @@ public class Order {
 			}
 	}
 
-	private void setID(List<Product> products, Customer customer, Deliver deliver) {
-		
-		
-	}
+
 
 	/**
 	 * @return the iD
@@ -120,7 +121,7 @@ public class Order {
 	}
 
 	/**
-	 * @param price the price to set
+	 * @set the price
 	 */
 	public void setPrice() {
 		int sumprice= 0;

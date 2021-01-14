@@ -12,7 +12,7 @@
 	<artifactId>IDS</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>CCC3</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Progetto IDS</description>
 
 	<properties>
 		<java.version>11</java.version>

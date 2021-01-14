@@ -3,21 +3,21 @@ package Unicam.IDS.AccountSystem;
 import Unicam.IDS.Market;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.List;
 
 @Entity
 public class Seller extends Account{
-	
 
-	
-	private int ID = 0;
-	//I NEGOZI DEL COMMERCIANTE
-	private List<Market> markets;
+	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO)
+	private int ID;
 
 	public Seller(int cellNumber,String email, String password, String name, String surname){	
 		super(cellNumber, email, password, name, surname);
-		this.setID(name,surname);
-				
+
 	}
 
 	/**
@@ -27,36 +27,31 @@ public class Seller extends Account{
 		return ID;
 	}
 
-	/**
-	 * @param iD the iD to set
-	 */
-	public void setID(String name, String surname) {
-		
-	}
+
 
 	
 	/**
 	 * @return the Markets
 	 */
-	public List<Market> getMarkets() {
-		return markets;
-	}
+	//public List<Market> getMarkets() {
+	//TODO	return markets;
+	//}
 
 	/** Aggiunge un negozio alla lista di negozi del commerciante
 	 * @return the Markets
 	 */
-	public void addMarket(Market newmarket){
-		if (newmarket == null) throw new NullPointerException ("Can't add an invalid market");
-		markets.add(newmarket);
-	}
+//TODO	public void addMarket(Market newmarket){
+	//	if (newmarket == null) throw new NullPointerException ("Can't add an invalid market");
+	//	markets.add(newmarket);
+//	}
 	
 	/** Rimuove un negozio alla lista di negozi del commerciante
 	 * @return the Markets
 	 */
-	public void removeMarket(Market newmarket){
-		if (newmarket == null) throw new NullPointerException ("Can't remove an invalid market");
-		markets.remove(newmarket);
-	}
+//	public void removeMarket(Market newmarket){
+//		if (newmarket == null) throw new NullPointerException ("Can't remove an invalid market");
+	//	markets.remove(newmarket);
+//	}
 	
 
 	
