@@ -1,4 +1,4 @@
-package Unicam.IDS;
+package Unicam.IDS.Model;
 
 
 /**

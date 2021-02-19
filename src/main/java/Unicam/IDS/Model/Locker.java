@@ -1,31 +1,33 @@
-package Unicam.IDS;
+package Unicam.IDS.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "lockers")
 public class Locker{
-	//TODO 		@Column(name = "") per ogni parametro
 	//IL CODICE UNIVOCO GENERATO DAI DATI DEL PUNTO DI RITIRO PER IDENTIFICARLO
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
-	private int ID;
+	private long ID;
 	
 	//IL NUMERO DI TELEFONO DEL PUNTO DI RITIRO
+	@Column(name = "cellNumber")
 	private int cellNumber;
 	
 	//IL NOME DEL PUNTO DI RITIRO
+	@Column(name = "name")
 	private String name;
 	
 	//L'INDIRIZZO DEL PUNTO DI RITIRO
+	@Column(name = "address")
 	private String address;
 	
 	//L'ORARIO DI APERTURA DEL PUNTO DI RITIRO
+	@Column(name = "openingTime")
 	private int openingTime;
 	
 	//L'ORARIO DI CHIUSURA DEL PUNTO DI RITIRO
+	@Column(name = "closingTime")
 	private int closingTime;
 	
 	
@@ -45,12 +47,16 @@ public class Locker{
      *              @note questa evenienza potrebbe essere gestita dal controller.
 	 * 
 	 */
-	
+
+
+	public Locker(){
+		super();
+	}
+
 	public Locker(String name, String address, int cellNumber, int openingTime, int closingTime) {
 
 		if (name==null && address == null) 	throw new NullPointerException ("");
 		else {
-			this.setID(name,address,cellNumber);
 			this.setName(name);
 			this.setAddress(address);
 			this.setCellNumber(cellNumber);
@@ -66,18 +72,16 @@ public class Locker{
 	/**
 	 * @return the iD
 	 */
-	public int getID() {
+	public long getID() {
 		return ID;
 	}
 
 
 	/**
-	 * @param address 
-	 * @param name 
-	 * @param cellNumber 
+	 * @param id
 	 */
-	private void setID(String name, String address, int cellNumber) {
-		return;
+	public void setID(long id) {
+		this.ID=id;
 	}
 
 
@@ -96,7 +100,7 @@ public class Locker{
 		this.name = name;
 	}
 
-	private int getCellNumber() {
+	public int getCellNumber() {
 		
 		return cellNumber;
 	}
@@ -104,7 +108,7 @@ public class Locker{
 	/**
 	 * @return the iD
 	 */
-	private void setCellNumber(int cellNumber) {
+	public void setCellNumber(int cellNumber) {
 		this.getCellNumber();
 	}
 

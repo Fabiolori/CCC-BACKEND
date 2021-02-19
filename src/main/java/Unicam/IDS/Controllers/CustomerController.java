@@ -1,6 +1,8 @@
 package Unicam.IDS.Controllers;
-import Unicam.IDS.AccountSystem.Customer;
-import Unicam.IDS.Repo.CustomerRepository;
+
+import Unicam.IDS.Model.AccountSystem.Customer;
+import Unicam.IDS.Service.CustomerService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -8,59 +10,48 @@ import java.util.List;
 @RestController
 public class CustomerController {
 
-    private final CustomerRepository repository;
+    @Autowired
+    CustomerService service;
 
-    public CustomerController(CustomerRepository repository) {
-        this.repository = repository;
+    public CustomerController(CustomerService service) {
+        this.service = service;
     }
 
 
     // SELEZIONARE TUTTI I CUSTOMER
-
     // Aggregate root
     // tag::get-aggregate-root[]
     @GetMapping("/customers")
     List<Customer> all() {
-        return repository.findAll();
+        return service.getCustomers();
     }
     // end::get-aggregate-root[]
 
     // AGGIUNGERE UN CUSTOMER
     @PostMapping("/customers")
-    Customer newCustomer(@RequestBody Customer newCustomer) {
-        return repository.save(newCustomer);
+   Customer newCustomer(@RequestBody Customer newCustomer) {
+        return service.createCustomer(newCustomer);
     }
 
     // SELEZIONARE UN CUSTOMER
-
     @GetMapping("/customers/{id}")
     Customer one(@PathVariable Long id) {
 
-        return repository.findById(id)
-                .orElseThrow(() -> new NullPointerException());
+        return service.getCustomerbyID(id);
     }
+
+
+
     //AGGIORNARE UN CUSTOMER
-    @PutMapping("/customers/{id}")
+    @RequestMapping( value = "/customers/{id}", method = RequestMethod.PUT)
     Customer replaceCustomer(@RequestBody Customer newCustomer, @PathVariable Long id) {
 
-        return repository.findById(id)
-                .map(customer -> {
-                    customer.setCellNumber(newCustomer.getCellNumber());
-                    customer.setEmail(newCustomer.getEmail());
-                    customer.setPassword(newCustomer.getPassword());
-                    customer.setName(newCustomer.getName());
-                    customer.setSurname(newCustomer.getSurname());
-                    return repository.save(customer);
-                })
-                .orElseGet(() -> {
-                   //TODO newCustomer.setId(id);
-                    return repository.save(newCustomer);
-                });
+        return service.updateCustomer(newCustomer,id);
     }
 
 //RIMUOVERE UN CUSTOMER
     @DeleteMapping("/customers/{id}")
     void deleteCustomer(@PathVariable Long id) {
-        repository.deleteById(id);
+        service.deleteCustomer(id);
     }
 }

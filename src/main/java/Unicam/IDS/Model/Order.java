@@ -1,20 +1,22 @@
-package Unicam.IDS;
+package Unicam.IDS.Model;
 
-import Unicam.IDS.AccountSystem.Customer;
-import Unicam.IDS.AccountSystem.Deliver;
+import Unicam.IDS.Model.AccountSystem.Customer;
+import Unicam.IDS.Model.AccountSystem.Deliver;
 
 import javax.persistence.*;
 import java.util.List;
 @Entity
+@Table(name = "Orders")
 public class Order {
-	//TODO 		@Column(name = "") per ogni parametro
-	//IL CODICE UNIVOCO GENERATO DAI DATI PER IDENTIFICARLO
+
+    //IL CODICE UNIVOCO GENERATO DAI DATI PER IDENTIFICARLO
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
-	private int ID;
+	private long ID;
 	
 	//IL O I PRODOTTI CHE VENGONO ACQUISTATI DAL CLIENTE, SE SI VUOLE METTERE PIU VOLTE LO STESSO PRODOTTO BISOGNA AGGIUNGERLO DI NUOVO NELL?ORDINE,
 	//LA QUANTITà NON VIENE PRESA IN CONSIDERAZIONE NELL'ORDER
+	@Column(name = "products")
 	@ElementCollection(targetClass=Product.class)
 	private List<Product>  products;
 
@@ -27,9 +29,11 @@ public class Order {
 	private Deliver deliver;
 	
 	//L'IMPORTO CHE IL CLIENTE HA PAGATO, VIENE CREATO DALLA SOMMA DEI PREZZI DEI PRODOTTI NELL'ORDINE
+	@Column(name = "price")
 	private int price;
 	
 	//LO STATO DELL'ORDINE (APPENA VIENE CREATO L'OGGETTO VIENE SETTATO IN recieved)
+	@Column(name = "status")
 	private OrderStatus status;
 	
 	/* Costruisce un oggetto di tipo ordine
@@ -50,7 +54,11 @@ public class Order {
      *             l'ordine deve avere almeno un cliente e dei prodotti
 	 * 
 	 */
-	
+
+	public Order(){
+		super();
+	}
+
 	public Order (List<Product>  products, Customer customer, Deliver deliver, OrderStatus status) {
 		if (products==null || customer == null) throw new NullPointerException ("");
 		else {
@@ -61,13 +69,17 @@ public class Order {
 			this.setPrice();
 			}
 	}
-
-
+	/**
+	 * @param ID the ID to set
+	 */
+	public void setID(long ID) {
+		this.ID = ID;
+	}
 
 	/**
-	 * @return the iD
+	 * @return the ID
 	 */
-	public int getID() {
+	public long getID() {
 		return ID;
 	}
 

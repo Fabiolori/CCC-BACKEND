@@ -1,23 +1,30 @@
-package Unicam.IDS;
+package Unicam.IDS.Model;
 
 import javax.persistence.*;
 import java.util.List;
 @Entity
+@Table(name = "Cart")
 public class Cart {
-//TODO 		@Column(name = "") per ogni parametro
+
 		//IL CODICE UNIVOCO GENERATO DAI DATI PER IDENTIFICARLO
 		@Id
 		@GeneratedValue(strategy= GenerationType.AUTO)
-		private int ID;
+		private long ID;
 		
 		//IL O I PRODOTTI CHE VENGONO AGGIUNTI NEL CARRELLO DAL CLIENTE, SE SI VUOLE METTERE PIU VOLTE LO STESSO PRODOTTO BISOGNA AGGIUNGERLO DI NUOVO NEL CARRELLO,
 		//LA QUANTITà NON VIENE PRESA IN CONSIDERAZIONE NEL CARRELLO
-		@ElementCollection(targetClass=Product.class)
+		@Column(name = "products")
+		@ElementCollection(targetClass= Product.class)
 		private List<Product>  products;
 			
 		//L'IMPORTO CHE IL CLIENTE HA PAGHERà, VIENE CREATO DALLA SOMMA DEI PREZZI DEI PRODOTTI NEL CARRELLO
+		@Column(name = "price")
 		private int price;
-		
+
+
+	public Cart(){
+		super();
+	}
 
 		
 		/* Costruisce un oggetto di tipo carrello
@@ -27,7 +34,9 @@ public class Cart {
 		 * 
 		 * 
 		 */
-		
+
+
+
 		public Cart (List<Product>  products) {
 			this.setID(products);
 			this.setProducts(products);
@@ -42,7 +51,7 @@ public class Cart {
 		/**
 		 * @return the iD
 		 */
-		public int getID() {
+		public long getID() {
 			return ID;
 		}
 

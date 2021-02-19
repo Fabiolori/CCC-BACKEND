@@ -1,6 +1,4 @@
-package Unicam.IDS.AccountSystem;
-
-import com.fasterxml.jackson.annotation.JsonCreator;
+package Unicam.IDS.Model.AccountSystem;
 
 import javax.persistence.*;
 
@@ -9,7 +7,7 @@ import javax.persistence.*;
  *
  */
 @Entity
-@Table(name = "Customers")
+@Table(name = "customers")
 
 public class Customer extends Account{
 
@@ -17,15 +15,27 @@ public class Customer extends Account{
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
 		long ID;
-		
+
 		// L'INDIRIZZO DEL CLIENTE
 		@Column(name = "address")
 		private String address;
 
 	//@JsonCreator
-		public Customer(int cellNumber,String email, String password,String name, String surname, String address)
-		{	super(cellNumber, email, password,name,surname);
 
+		public Customer(){
+			super();
+		}
+
+
+		public Customer(long cellNumber,String email, String password,String name, String surname, String address)
+		{
+			//super(cellNumber, email, password,name,surname);
+
+			this.setCellNumber(cellNumber);
+			this.setEmail(email);
+			this.setPassword(password);
+			this.setName(name);
+			this.setSurname(surname);
 			this.setAddress (address);
 						
 		}
@@ -38,7 +48,12 @@ public class Customer extends Account{
 			return ID;
 		}
 
-
+		/**
+		 * @param id the id to set
+		 */
+		public void setId(long id){
+			this.ID = id;
+		}
 		/**
 		 * @return the Address
 		 */
@@ -53,8 +68,8 @@ public class Customer extends Account{
 			this.address = address;
 			
 		}
-			
-		
+
+
 //TODO
 		
 		

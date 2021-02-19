@@ -1,59 +1,73 @@
-package Unicam.IDS;
+package Unicam.IDS.Model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 //quando un prodotto viene venduto decremento quantity, se quantiti +è 0 deve essere segnalato, caso d uso? refill prodotto?
 @Entity
+@Table(name = "products")
 public class Product {
-	//TODO 		@Column(name = "") per ogni parametro
     //IL CODICE UNIVOCO GENERATO DAI DATI DEL PRODOTTO PER IDENTIFICARLO
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
-	private int ID;
+	private long ID;
 	
 	//IL NOME DEL Prodotto
+	@Column(name = "name")
 	private String name;
 	
 	//IL PREZZO DEL PRODOTTO
+	@Column(name = "price")
 	private int price;
 	
 	//LA MARCA DEL PRODOTTO
+	@Column(name = "brand")
 	private String brand;
 	
 	//LA DESCRIZIONE DEL PRODOTTO
+	@Column(name = "description")
 	private String description;
 	
 	//I TAG DEL PRODOTTO, se piu di uno sono separati dalla virgola
+	@Column(name = "tags")
 	private String tags;
 	
 	//IL NUMERO DI PRODOTTI DISPONIBILI
+	@Column(name = "quantity")
 	private int quantity;
 
+	@ManyToOne
+	private Market market;
 
-	
-	public Product(String name, int price, String brand, String description, String tags, int quantity){
+	public Product(){
+		super();
+	}
+
+	public Product(String name, int price, String brand, String description, String tags, int quantity,Market market){
 			this.setName(name);
 			this.setPrice(price);
 			this.setBrand(brand);
 			this.setDescription(description);
 			this.setTags(tags);
 			this.setQuantity(quantity);
+			this.setMarket(market);
 
 	}
-
-
 
 	/**
 	 * @return the iD
 	 */
-	public int getID() {
+	public long getID() {
 		return ID;
 	}
 
+
+	/**
+	 * @param ID
+	 */
+	public void setID(long ID) {
+		this.ID = ID;
+	}
 
 	/**
 	 * @return the name
@@ -160,4 +174,22 @@ public class Product {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
+
+	/**
+	 * @param market the market to set
+	 */
+	public void setMarket(Market market) {
+		this.market = market;
+	}
+
+
+	/**
+	 * @return the market
+	 */
+	public Market getMarket (){
+		return  this.market;
+	}
+
+
 }

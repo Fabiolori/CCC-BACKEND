@@ -1,29 +1,37 @@
-package Unicam.IDS;
+package Unicam.IDS.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-
+@Table(name = "parking")
 public class Parking {
-	//TODO 		@Column(name = "") per ogni parametro
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
-	private int ID;
+	private long ID;
 	//IL NOME DEL PARCHEGGIO
+	@Column(name = "name")
 	private String name;
 	
 	//L'INDIRIZZO DEL PARCHEGGIO
+	@Column(name = "address")
 	private String address;
 	
 	//L'ORARIO DI APERTURA DEL PARCHEGGIO
+	@Column(name = "openingTime")
 	private int openingTime;
 	
 	//L'ORARIO DI CHIUSURA DEL PARCHEGGIO
+	@Column(name = "closingTime")
 	private int closingTime;
-	
+
+
+	//I PARCHEGGI OCCUPATI
+	@Column(name = "occupiedparks")
+	private int occupied;
+
+	public Parking(){
+		super();
+	}
 	public Parking(String name, String address, int openingTime, int closingTime) {
 		if (name==null && address == null) 	throw new NullPointerException ("");
 		else {
@@ -31,18 +39,24 @@ public class Parking {
 			this.setAddress(address);
 			this.setOpeningTime (openingTime);
 			this.setClosingTime(closingTime);
-			
+			this.occupied = 0;
 			}
 	}
 	
 	/**
 	 * @return the iD
 	 */
-	public int getID() {
+	public long getID() {
 		return ID;
 	}
 
 
+	/**
+	 * @param ID
+	 */
+	public void setID(long ID) {
+		this.ID = ID;
+	}
 
 	/**
 	 * @return the name
@@ -103,6 +117,20 @@ public class Parking {
 	 */
 	public void setClosingTime(int closingTime) {
 		this.closingTime = closingTime;
+	}
+
+	/**
+	 * @return the occcupiedparks
+	 */
+	public int getOccupied() {
+		return occupied;
+	}
+
+	/**
+	 * @param occupied the occupiedparks to set
+	 */
+	public void setOccupied(int occupied) {
+		this.occupied = occupied;
 	}
 
 

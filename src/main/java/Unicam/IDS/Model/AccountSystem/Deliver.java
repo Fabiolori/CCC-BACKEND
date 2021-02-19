@@ -1,23 +1,28 @@
-package Unicam.IDS.AccountSystem;
+package Unicam.IDS.Model.AccountSystem;
 
-import Unicam.IDS.Order;
-import Unicam.IDS.OrderStatus;
+import Unicam.IDS.Model.Order;
+import Unicam.IDS.Model.OrderStatus;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "delivers")
 public class Deliver  extends Account{
 	
 	//IL CODICE UNIVOCO GENERATO DAI DATI DEL CORRIERE PER IDENTIFICARLO
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
-	private int ID;
-	
+	private long ID;
 
-	
+	public Deliver(){
+		super();
+	}
+
+	@Override
+	public void setId(long id) {
+	this.ID= id;
+	}
+
 	/* Costruisce un oggetto di tipo corriere
 	 * 
 	 * @param name 	
@@ -37,7 +42,7 @@ public class Deliver  extends Account{
 	
 	public Deliver(int cellNumber,String email, String password,String name, String surname) {
 		super(cellNumber,email,password, name,surname);
-		this.setID(name,surname,cellNumber);
+
 
 		}
 	
@@ -55,8 +60,8 @@ public class Deliver  extends Account{
 	 * 				il cellulare del corriere
 	 */
 	
-	private void setID(String name, String surname, long cellNumber) {
-	// TODO Auto-generated method stub
+	private void setID(long id) {
+	this.ID = id;
 	return ;
 	}
 
@@ -64,7 +69,7 @@ public class Deliver  extends Account{
 	 * @return the iD
 	 */
 	
-	public int getID() {
+	public long getID() {
 		return ID;
 	}
 	

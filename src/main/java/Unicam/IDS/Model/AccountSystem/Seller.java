@@ -1,21 +1,25 @@
-package Unicam.IDS.AccountSystem;
+package Unicam.IDS.Model.AccountSystem;
 
-import Unicam.IDS.Market;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.List;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "sellers")
 public class Seller extends Account{
 
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
-	private int ID;
+	private long ID;
 
-	public Seller(int cellNumber,String email, String password, String name, String surname){	
+	public Seller(){
+		super();
+	}
+
+	@Override
+	public void setId(long id) {
+		this.ID = id;
+	}
+
+	public Seller(int cellNumber,String email, String password, String name, String surname){
 		super(cellNumber, email, password, name, surname);
 
 	}
@@ -23,7 +27,7 @@ public class Seller extends Account{
 	/**
 	 * @return the iD
 	 */
-	public int getID() {
+	public long getID() {
 		return ID;
 	}
 

@@ -1,4 +1,4 @@
-package Unicam.IDS.AccountSystem;
+package Unicam.IDS.Model.AccountSystem;
 
 import javax.persistence.Column;
 import java.util.Base64;
@@ -6,7 +6,7 @@ import java.util.Base64;
 public abstract class Account {
 	// IL NUMERO DI TELEFONO
 	@Column(name = "cellNumber")
-	private int cellNumber;
+	private long cellNumber;
 	// L'EMAIL
 	@Column(name = "email")
 	private String email;
@@ -21,8 +21,11 @@ public abstract class Account {
 	@Column(name = "surname")
 	private String surname;
 
+	public Account(){
 
-	public Account (int cellNumber,String email, String password, String name, String surname) {
+	}
+
+	public Account (long cellNumber,String email, String password, String name, String surname) {
 		this.setCellNumber(cellNumber);
 		this.setEmail(email);
 		this.setPassword(password);
@@ -35,7 +38,7 @@ public abstract class Account {
 	/**
 	 * @return the cellNumber
 	 */
-	public int getCellNumber() {
+	public long getCellNumber() {
 		return cellNumber;
 	}
 
@@ -44,7 +47,7 @@ public abstract class Account {
 	/**
 	 * @param cellNumber the cellNumber to set
 	 */
-	public void setCellNumber(int cellNumber) {
+	public void setCellNumber(long cellNumber) {
 		this.cellNumber = cellNumber;
 	}
 
@@ -115,4 +118,6 @@ public abstract class Account {
 		this.surname = surname;
 	}
 
+
+    public abstract void setId(long id);
 }

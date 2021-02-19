@@ -1,6 +1,7 @@
-package Unicam.IDS;
+package Unicam.IDS.Model;
 
 import javax.persistence.*;
+import java.util.List;
 
 /*Il caso d&#39;uso viene attivato dal commerciante nel momento in cui decide di inserire il suo negozio
 nella piattaforma. Il sistema chiede al commerciante informazioni sul negozio (Nome, Indirizzo, Tipo
@@ -9,12 +10,15 @@ Convenzionati), il commerciante le compila, terminata questa fase il sistema mos
 delle informazioni al commerciante, se il commerciante conferma la correttezza di quest&#39;ultime
 allora il negozio viene correttamente inserito dal sistema, altrimenti il sistema permette di
 modificare le informazioni.*/
+
+//TODO il negozio ha un oggetto di tipo statistica
 @Entity
+@Table(name = "markets")
 public class Market {
 	//IL CODICE UNIVOCO GENERATO DAI DATI DEL NEGOZIO PER IDENTIFICARLO
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
-	private int ID;
+	private long ID;
 	
 	//IL NOME DEL NEGOZIO
 	@Column(name = "name")
@@ -35,16 +39,20 @@ public class Market {
 	//ORARIO DI CHIUSURA DEL NEGOZIO
 	@Column(name = "closingTime")
 	private int closingTime;
-	//TODO
+
 	//I PARCHEGGI CONVENZIONATI
 	//@Embedded
 	//@Column(name = "")
-	//private Parking parking;
+	@ManyToMany
+	private List <Parking>  parking;
 	
 //	//I PRODOTTI DEL NEGOZIO
 //	private List<Product> products;
 
-	public Market(String name, String address, String type,int openingtime,int closingTime,Parking parking)
+	public Market(){
+		super();
+	}
+	public Market(String name, String address, String type, int openingtime, int closingTime,Parking parking)
 	{
 
 		this.setName(name);
@@ -52,17 +60,23 @@ public class Market {
 		this.setType(type);
 		this.setOpeningTime(openingtime);
 		this.setClosingTime(closingTime);
-		//this.setParking(parking);
+		this.setParking(parking);
 	
 	}
 
 	/**
 	 * @return the iD
 	 */
-	public int getID() {
+	public long getID() {
 		return ID;
 	}
 
+	/**
+	 * @param ID the ID to set
+	 */
+	public void setID(long ID) {
+		this.ID = ID;
+	}
 
 	/**
 	 * @return the Name
@@ -140,17 +154,17 @@ public class Market {
 	/**
 	 * @return the list of the parking
 	 */
-	//public Parking getParking() {
-//		return parking;
-//	}
+	public List <Parking>  getParking() {
+		return parking;
+	}
 
 	/**
 	 * @param parking the lista dei parcheggi to set
 	 */
 
-	//public void setParking(Parking parking) {
-	//	this.parking = parking;
-//	}
+	public void setParking(Parking parking) {
+		this.parking.add(parking);
+	}
 
 //	/**
 //	 * @return the Products
