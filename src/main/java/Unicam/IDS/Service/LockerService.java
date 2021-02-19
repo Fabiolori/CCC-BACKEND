@@ -55,7 +55,8 @@ public class LockerService {
 
 
     public void changeStatus(OrderStatus newStatus, long orderId){
-        OrderService.getOrderbyID(orderId).setStatus(newStatus);
+        OrderService Oservice = new OrderService();
+        Oservice.getOrderbyID(orderId).setStatus(newStatus);
         return;
 
     }

@@ -47,7 +47,7 @@ public class OrderService {
         return repository.findAll();
     }
 
-    public static Order getOrderbyID(long ID) {
+    public  Order getOrderbyID(long ID) {
         return repository.findById(ID)
                 .orElseThrow(() -> new NullPointerException());
     }

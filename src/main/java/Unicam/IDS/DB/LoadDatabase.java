@@ -4,7 +4,9 @@ package Unicam.IDS.DB;
 import Unicam.IDS.Model.AccountSystem.Customer;
 import Unicam.IDS.Model.AccountSystem.Deliver;
 import Unicam.IDS.Model.AccountSystem.Seller;
-import Unicam.IDS.Model.*;
+import Unicam.IDS.Model.Locker;
+import Unicam.IDS.Model.OrderStatus;
+import Unicam.IDS.Model.Parking;
 import Unicam.IDS.Repo.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +21,7 @@ class LoadDatabase {
 
 
     @Bean
-    CommandLineRunner initDatabase(CustomerRepository Crepository, SellerRepository Srepository, DeliverRepository Drepository, LockerRepository Lrepository, ParkingRepository PArepository, ProductRepository Prepository, MarketRepository Mrepository, CartRepository CArepository, OrderRepository Orepository) {
+    CommandLineRunner initDatabase(CustomerRepository Crepository, SellerRepository Srepository, DeliverRepository Drepository, LockerRepository Lrepository, ParkingRepository PArepository, ProductRepository Prepository, MarketRepository Mrepository, OrderRepository Orepository) {
         long id = 1;
         OrderStatus status = OrderStatus.recieved;
         return args -> {
@@ -31,7 +33,6 @@ class LoadDatabase {
             log.info("Preloading " + PArepository.save(new Parking("parking","test", 15, 19)));
           //  log.info("Preloading " + Mrepository.save(new Market("market","test", "type", 15,19, PArepository.findAll().stream().findFirst().get())));
            // log.info("Preloading " + Prepository.save(new Product("test",20, "adidas", "test","test,test1", 10,Mrepository.findAll().get(0))));
-            log.info("Preloading " + CArepository.save(new Cart(Prepository.findAll())));
           //  log.info("Preloading " + Orepository.save(new Order(Prepository.findAll(),Crepository.findAll().get(1), Drepository.findAll().get(1), status )));
 
 
