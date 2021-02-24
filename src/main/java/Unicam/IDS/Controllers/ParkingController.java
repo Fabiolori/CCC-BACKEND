@@ -21,20 +21,19 @@ public class ParkingController {
 
 
     @GetMapping("/parking")
-    List<Parking> all() {
+    public List<Parking> all() {
         return service.getParking();
     }
-    // end::get-aggregate-root[]
 
     // AGGIUNGERE UN PARKING
     @PostMapping("/parking")
-    Parking newParking(@RequestBody  Parking newParking) {
+    public Parking newParking(@RequestBody  Parking newParking) {
         return service.createParking(newParking);
     }
 
     // SELEZIONARE UN PARKING
     @GetMapping("/parking/{id}")
-    Parking one(@PathVariable Long id) {
+    public Parking one(@PathVariable Long id) {
 
         return service.getParkingbyID(id);
     }
@@ -43,14 +42,14 @@ public class ParkingController {
 
     //AGGIORNARE UN PARKING
     @RequestMapping( value = "/parking/{id}", method = RequestMethod.PUT)
-    Parking replaceParking(@RequestBody Parking newParking, @PathVariable Long id) {
+    public Parking replaceParking(@RequestBody Parking newParking, @PathVariable Long id) {
 
         return service.updateParking(newParking,id);
     }
 
     //RIMUOVERE UN PARKING
     @DeleteMapping("/parking/{id}")
-    void deleteParking(@PathVariable Long id) {
+    public void deleteParking(@PathVariable Long id) {
         service.deleteParking(id);
     }
 

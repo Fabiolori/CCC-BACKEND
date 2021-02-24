@@ -14,7 +14,7 @@ public class StatisticsController {
     StatisticsService statisticsService;
 
     @RequestMapping (value = "/statistics", method = RequestMethod.GET)
-    Statistics getStatistics(long id){
+    public Statistics getStatistics(long id){
     return statisticsService.getStatistics(id);
 
     }

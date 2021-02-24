@@ -22,20 +22,20 @@ public class LockerController {
 
 
     @GetMapping("/lockers")
-    List<Locker> all() {
+    public List<Locker> all() {
         return service.getLocker();
     }
     // end::get-aggregate-root[]
 
     // AGGIUNGERE UN LOCKER
     @PostMapping("/lockers")
-    Locker newLocker(@RequestBody  Locker newLocker) {
+    public Locker newLocker(@RequestBody  Locker newLocker) {
         return service.createLocker(newLocker);
     }
 
     // SELEZIONARE UN LOCKER
     @GetMapping("/lockers/{id}")
-    Locker one(@PathVariable Long id) {
+    public Locker one(@PathVariable Long id) {
 
         return service.getLockerbyID(id);
     }
@@ -44,20 +44,20 @@ public class LockerController {
 
     //AGGIORNARE UN LOCKER
     @RequestMapping( value = "/lockers/{id}", method = RequestMethod.PUT)
-    Locker replaceLocker(@RequestBody Locker newLocker, @PathVariable Long id) {
+    public Locker replaceLocker(@RequestBody Locker newLocker, @PathVariable Long id) {
 
         return service.updateLocker(newLocker,id);
     }
 
     //RIMUOVERE UN LOCKER
     @DeleteMapping("/lockers/{id}")
-    void deleteLocker(@PathVariable Long id) {
+    public void deleteLocker(@PathVariable Long id) {
         service.deleteLocker(id);
     }
 
 
     @RequestMapping( value = "/lockers/status", method = RequestMethod.PUT)
-    void changeStatus(@RequestBody OrderStatus newStatus, @PathVariable Long Orderid) {
+    public void changeStatus(@RequestBody OrderStatus newStatus, @PathVariable Long Orderid) {
 
         service.changeStatus(newStatus,Orderid);
     }

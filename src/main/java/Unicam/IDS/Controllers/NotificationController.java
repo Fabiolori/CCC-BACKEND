@@ -19,7 +19,7 @@ public class NotificationController {
     //EmailNotification emailNotification;
 
     // This Method Is Used To Prepare The Email Message And Send It To The Client
-    @RequestMapping(value = "sendEmail", method = RequestMethod.POST)
+    @RequestMapping(value = "/sendEmail", method = RequestMethod.POST)
     public void sendEmailToClient(HttpServletRequest request) {
 
         // Reading Email Form Input Parameters

@@ -14,10 +14,9 @@ public class LogInController {
     @Autowired
     DeliverController deliverController;
 
-    //TODO espandere agli altri
-    // SELEZIONARE La PASSWORD DI UN CUSTOMER
+
     @GetMapping("/accounts/{id}")
-    String getPassword(@PathVariable Long id) {
+    public String getPassword(@PathVariable Long id) {
 
             for (int i = 0; i < customerController.all().size(); i++) {
                 if (customerController.all().get(i).getID() == id) return customerController.all().get(i).getPassword();

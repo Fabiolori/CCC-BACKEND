@@ -36,7 +36,7 @@ public class Product {
 	@Column(name = "quantity")
 	private int quantity;
 
-	@ManyToOne
+	@ManyToOne (cascade = CascadeType.ALL)
 	private Market market;
 
 	public Product(){

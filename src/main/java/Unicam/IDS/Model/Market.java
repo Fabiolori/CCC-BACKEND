@@ -1,6 +1,7 @@
 package Unicam.IDS.Model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /*Il caso d&#39;uso viene attivato dal commerciante nel momento in cui decide di inserire il suo negozio
@@ -43,8 +44,8 @@ public class Market {
 	//I PARCHEGGI CONVENZIONATI
 	//@Embedded
 	//@Column(name = "")
-	@ManyToMany
-	private List <Parking>  parking;
+	@ManyToMany(cascade = CascadeType.ALL)
+	private List <Parking>  parking = new ArrayList<>();
 	
 //	//I PRODOTTI DEL NEGOZIO
 //	private List<Product> products;

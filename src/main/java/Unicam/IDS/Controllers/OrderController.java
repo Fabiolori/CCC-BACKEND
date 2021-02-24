@@ -21,20 +21,20 @@ public class OrderController {
 
 
     @GetMapping("/orders")
-    List<Order> all() {
+    public  List<Order> all() {
         return service.getOrder();
     }
-    // end::get-aggregate-root[]
+
 
     // AGGIUNGERE UN ORDER
     @PostMapping("/orders")
-    Order newOrder(@RequestBody Order newOrder) {
+    public Order newOrder(@RequestBody Order newOrder) {
         return service.createOrder(newOrder);
     }
 
     // SELEZIONARE UN ORDER
     @GetMapping("/orders/{id}")
-    Order one(@PathVariable Long id) {
+    public Order one(@PathVariable Long id) {
 
         return service.getOrderbyID(id);
     }
@@ -43,14 +43,14 @@ public class OrderController {
 
     //AGGIORNARE UN ORDER
     @RequestMapping( value = "/orders/{id}", method = RequestMethod.PUT)
-    Order replaceOrder(@RequestBody Order newOrder, @PathVariable Long id) {
+    public  Order replaceOrder(@RequestBody Order newOrder, @PathVariable Long id) {
 
         return service.updateOrder(newOrder,id);
     }
 
     //RIMUOVERE UN ORDER
     @DeleteMapping("/orders/{id}")
-    void deleteOrder(@PathVariable Long id) {
+    public  void deleteOrder(@PathVariable Long id) {
         service.deleteOrder(id);
     }
 

@@ -21,20 +21,20 @@ public class MarketController {
 
 
     @GetMapping("/markets")
-    List<Market> all() {
+    public  List<Market> all() {
         return service.getMarket();
     }
-    // end::get-aggregate-root[]
+
 
     // AGGIUNGERE UN MARKET
     @PostMapping("/markets")
-    Market newMarket(@RequestBody  Market newMarket) {
+    public Market newMarket(@RequestBody  Market newMarket) {
         return service.createMarket(newMarket);
     }
 
     // SELEZIONARE UN MARKET
     @GetMapping("/markets/{id}")
-    Market one(@PathVariable Long id) {
+    public Market one(@PathVariable Long id) {
 
         return service.getMarketbyID(id);
     }
@@ -43,14 +43,14 @@ public class MarketController {
 
     //AGGIORNARE UN MARKET
     @RequestMapping( value = "/markets/{id}", method = RequestMethod.PUT)
-    Market replaceMarket(@RequestBody Market newMarket, @PathVariable Long id) {
+    public Market replaceMarket(@RequestBody Market newMarket, @PathVariable Long id) {
 
         return service.updateMarket(newMarket,id);
     }
 
     //RIMUOVERE UN MARKET
     @DeleteMapping("/markets/{id}")
-    void deleteMarket(@PathVariable Long id) {
+    public  void deleteMarket(@PathVariable Long id) {
         service.deleteMarket(id);
     }
 

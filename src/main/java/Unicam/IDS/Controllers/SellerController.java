@@ -22,20 +22,20 @@ public class SellerController {
     // Aggregate root
     // tag::get-aggregate-root[]
     @GetMapping("/sellers")
-    List<Seller> all() {
+    public List<Seller> all() {
         return service.getSeller();
     }
     // end::get-aggregate-root[]
 
     // AGGIUNGERE UN SELLER
     @PostMapping("/sellers")
-    Seller newSeller(@RequestBody Seller newSeller) {
+    public Seller newSeller(@RequestBody Seller newSeller) {
         return service.createSeller(newSeller);
     }
 
     // SELEZIONARE UN SELLER
     @GetMapping("/sellers/{id}")
-    Seller one(@PathVariable Long id) {
+    public Seller one(@PathVariable Long id) {
 
         return service.getSellerbyID(id);
     }

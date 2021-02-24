@@ -22,20 +22,20 @@ public class CustomerController {
     // Aggregate root
     // tag::get-aggregate-root[]
     @GetMapping("/customers")
-    List<Customer> all() {
+    public List<Customer> all() {
         return service.getCustomers();
     }
     // end::get-aggregate-root[]
 
     // AGGIUNGERE UN CUSTOMER
     @PostMapping("/customers")
-   Customer newCustomer(@RequestBody Customer newCustomer) {
+    public Customer newCustomer(@RequestBody Customer newCustomer) {
         return service.createCustomer(newCustomer);
     }
 
     // SELEZIONARE UN CUSTOMER
     @GetMapping("/customers/{id}")
-    Customer one(@PathVariable Long id) {
+    public Customer one(@PathVariable Long id) {
 
         return service.getCustomerbyID(id);
     }
@@ -44,14 +44,14 @@ public class CustomerController {
 
     //AGGIORNARE UN CUSTOMER
     @RequestMapping( value = "/customers/{id}", method = RequestMethod.PUT)
-    Customer replaceCustomer(@RequestBody Customer newCustomer, @PathVariable Long id) {
+    public Customer replaceCustomer(@RequestBody Customer newCustomer, @PathVariable Long id) {
 
         return service.updateCustomer(newCustomer,id);
     }
 
 //RIMUOVERE UN CUSTOMER
     @DeleteMapping("/customers/{id}")
-    void deleteCustomer(@PathVariable Long id) {
+    public void deleteCustomer(@PathVariable Long id) {
         service.deleteCustomer(id);
     }
 }

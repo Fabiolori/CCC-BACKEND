@@ -4,6 +4,7 @@ import Unicam.IDS.Model.AccountSystem.Customer;
 import Unicam.IDS.Model.AccountSystem.Deliver;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 @Entity
 @Table(name = "Orders")
@@ -18,14 +19,14 @@ public class Order {
 	//LA QUANTITà NON VIENE PRESA IN CONSIDERAZIONE NELL'ORDER
 	@Column(name = "products")
 	@ElementCollection(targetClass=Product.class)
-	private List<Product>  products;
+	private List<Product>  products = new ArrayList<Product>();
 
 	//IL CLIENTE CHE ACQUISTA
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Customer customer;
 	
 	//IL CORRIERE CHE SI OCCUPA DELLA CONSEGNA
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Deliver deliver;
 	
 	//L'IMPORTO CHE IL CLIENTE HA PAGATO, VIENE CREATO DALLA SOMMA DEI PREZZI DEI PRODOTTI NELL'ORDINE

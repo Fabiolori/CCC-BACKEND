@@ -22,20 +22,20 @@ public class DeliverController {
 
 
         @GetMapping("/delivers")
-        List< Deliver> all() {
+        public List< Deliver> all() {
             return service.getDeliver();
         }
         // end::get-aggregate-root[]
 
         // AGGIUNGERE UN DELIVER
         @PostMapping("/delivers")
-        Deliver newDeliver(@RequestBody  Deliver newDeliver) {
+        public Deliver newDeliver(@RequestBody  Deliver newDeliver) {
             return service.createDeliver(newDeliver);
         }
 
         // SELEZIONARE UN DELIVER
         @GetMapping("/delivers/{id}")
-        Deliver one(@PathVariable Long id) {
+        public Deliver one(@PathVariable Long id) {
 
             return service.getDeliverbyID(id);
         }
@@ -44,22 +44,22 @@ public class DeliverController {
 
         //AGGIORNARE UN DELIVER
         @RequestMapping( value = "/delivers/{id}", method = RequestMethod.PUT)
-        Deliver replaceDeliver(@RequestBody Deliver newDeliver, @PathVariable Long id) {
+        public Deliver replaceDeliver(@RequestBody Deliver newDeliver, @PathVariable Long id) {
 
             return service.updateDeliver(newDeliver,id);
         }
 
         //RIMUOVERE UN DELIVER
         @DeleteMapping("/delivers/{id}")
-        void deleteDeliver(@PathVariable Long id) {
+        public  void deleteDeliver(@PathVariable Long id) {
             service.deleteDeliver(id);
         }
 
 
-    @RequestMapping( value = "/delivers/status", method = RequestMethod.PUT)
-    void changeStatus(@RequestBody OrderStatus newStatus, @PathVariable Long Orderid) {
+         @RequestMapping( value = "/delivers/status", method = RequestMethod.PUT)
+          public  void changeStatus(@RequestBody OrderStatus newStatus, @PathVariable Long orderid) {
 
-        service.changeStatus(newStatus,Orderid);
+           service.changeStatus(newStatus,orderid);
     }
 
 }
